@@ -3,7 +3,6 @@ import { useQuery } from 'react-query';
 
 // Components
 import Item from './Item/Item';
-// import Drawer from '@material-ui/core/Drawer';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Grid from '@material-ui/core/Grid';
 // import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
@@ -11,8 +10,8 @@ import Grid from '@material-ui/core/Grid';
 
 // Styles
 
-import { Wrapper } from './App.styles';
-import { Drawer } from "@material-ui/core";
+import { Wrapper, StyledButton } from './App.styles';
+import { Badge, Drawer } from "@material-ui/core";
 
 // Types
 
@@ -53,7 +52,11 @@ const App = () =>{
       <Drawer anchor='right' open={cartOpen} onClose={()=>setCartOpen(false)}>
         Cart
       </Drawer>
-      
+      <StyledButton onClick={()=> setCartOpen(true)}>
+        <Badge badgeContent={}>
+
+        </Badge>
+      </StyledButton>
       <Grid container spacing ={3}>
         {data?.map(item => (
           <Grid item key={item.id} xs={12} sm={4}>
