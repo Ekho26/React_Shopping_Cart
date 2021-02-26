@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 // Styles
 
 import { Wrapper } from './App.styles';
+import { Drawer } from "@material-ui/core";
 
 // Types
 
@@ -29,6 +30,9 @@ const getProducts = async (): Promise <CartItemType[]> =>
   await (await fetch('https://fakestoreapi.com/products')).json();
 
 const App = () =>{
+  const [cartOpen,setCartOpen] = useState(false);
+  const [cartItems, setCartItems] = useState([] as CartItemType[]);
+
   const { data,  isLoading, error } = useQuery<CartItemType[]>(
     'products', 
     getProducts
@@ -46,6 +50,10 @@ const App = () =>{
 
   return (
     <Wrapper>
+      <Drawer anchor='right' open={cartOpen} onClose={()=>setCartOpen(false)}>
+        Cart
+      </Drawer>
+      
       <Grid container spacing ={3}>
         {data?.map(item => (
           <Grid item key={item.id} xs={12} sm={4}>
